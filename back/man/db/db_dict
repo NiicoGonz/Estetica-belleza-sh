@@ -1,0 +1,42 @@
+Empleado (Employee)
+id_e = (String(20), PK, notnull) numero de identificacion del empleado
+name_e = (String(50), notnull) nombres del empleado
+lastname_e = (String(50), notnull) apellidos del empleado
+id_specialty = (String(5), FK(specialty.id_sp)) id de la especialidad
+id_schedule = (String(5), FK(schedule.id_sc)) id del horario
+rating = (Float) promedio de la puntuacion recibida
+photo = (LargeBinary) foto del empleado
+
+Cliente (Client)
+id_c = (String(20), PK, notnull) id del cliente
+name_c = (String(50), notnull) nombres del cliente
+lastname_c = (String(50), notnull) apellidos del cliente
+email = (String(80), notnull) correo del cliente
+password = (String(128), notnull) hash del password del cliente
+favorite_one = (String(20), FK(employee.id_e)) Empleado favorito de masajes exfoliantes
+favorite_two = (String(20), FK(employee.id_e)) Empleado favorito de peluqueria
+favorite_three = (String(20), FK(employee.id_e)) Empleado favorito de unas
+
+Servicios (Services)
+id_s = (String(5), PK, notnull) id del servicio
+name_s = (String(100), notnull) nombre del servicio
+price = (Float) precio del servicio
+(3 Servicios definidos, Masajes exfoliantes, peluqueria, unas)
+
+Citas (Appointment)
+id_a = (String(5), PK, notnull) id de la cita
+id_client = (String(20), FK(client.id_c)) id del cliente
+id_employee = (String(20), FK(employee.id_e)) id del empleado
+id_services = (String(5), FK(services.id_s)) id del servicio
+date_a = (DateTime, notnull) fecha agendada
+
+Especialidad (Specialty)
+id_sp = (String(5), PK, notnull) id de la especialidad
+name_sp = (String(100), notnull) nombre de la especialidad
+(3 Especialidades, masajes exfoliantes, peluqueria, unas)
+
+Horario (Schedule)
+id_sc = (String(5), PK, notnull) id del horario
+entry_time = (Time) hora de entrada
+departure_time = (Time) hora de salida
+(2 horarios definidos, 7:00 am - 3:00 pm y 3:00 pm - 9:00 pm)
